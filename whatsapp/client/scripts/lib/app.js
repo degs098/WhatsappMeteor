@@ -13,6 +13,7 @@ import {Meteor} from 'meteor/meteor';
 import RoutesConfig from '../routes';
 import ChatsCtrl from '../controllers/chats.controller';
 import ChatCtrl from '../controllers/chat.controller';
+import InputDirective from '../directives/input.directive';
 import CalendarFilter from '../filters/calendar.filter';
 const App = 'Whatsapp';
 
@@ -22,12 +23,13 @@ Angular.module(App, [
 	'angular-meteor',
 	'angularMoment',
 	'ionic'
-	]);
+]);
 
 new Loader(App)
 .load(RoutesConfig)
 .load(ChatCtrl)
 .load(ChatsCtrl)
+.load(InputDirective)
 .load(CalendarFilter);
 
 //Startup
