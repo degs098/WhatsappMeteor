@@ -2,7 +2,7 @@ import {Chats, Messages} from '../../../lib/collections';
 import {Controller} from 'angular-ecmascript/module-helpers';
 import Ionic from 'ionic-scripts';
 import {Meteor} from 'meteor/meteor';
-import {_} from 'meteor/underscore';
+import { _ } from 'meteor/underscore';
 
 export default class ChatCtrl extends Controller{
 
@@ -29,9 +29,9 @@ export default class ChatCtrl extends Controller{
 		if(_.isEmpty(this.message)) return;
 
 		this.callMethod('newMessage',{
-			text: this.message,
-			type: 'text',
-			chatId: this.chatId
+			text: this.message,			
+			chatId: this.chatId,
+			type: 'text'			
 		});
 
 		delete this.message;
