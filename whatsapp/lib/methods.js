@@ -10,7 +10,11 @@ Meteor.methods({
 		}
 
 		check(message, {
+<<<<<<< HEAD
 			text: String,
+=======
+			text: String,			
+>>>>>>> 85ffa6f011ce1f697aca1dbe6e5329f4d244eda9
 			chatId: String,
 			type: String
 		});
