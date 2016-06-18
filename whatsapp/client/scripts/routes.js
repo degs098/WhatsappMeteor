@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import { _ } from 'meteor/underscore';
 import {Config, Runner} from 'angular-ecmascript/module-helpers';
 
@@ -6,16 +6,6 @@ class RoutesConfig extends Config{
 	
 	constructor(){
 		super(...arguments);
-
-=======
-import {Config, Runner} from 'angular-ecmascript/module-helpers';
-import {_} from 'meteor/underscore';
-
-class RoutesConfig extends Config{
-
-	constructor(){
-		super(...arguments);
->>>>>>> 85ffa6f011ce1f697aca1dbe6e5329f4d244eda9
 		this.isAuthorized = ['$auth', this.isAuthorized.bind(this)];
 	}
 
@@ -27,11 +17,7 @@ class RoutesConfig extends Config{
 				abstract: true,
 				templateUrl: 'client/templates/tabs.html',
 				resolve: {
-<<<<<<< HEAD
 					user: this.isAuthorized
-=======
-					user:this.isAuthorized
->>>>>>> 85ffa6f011ce1f697aca1dbe6e5329f4d244eda9
 				}
 			})
 			.state('tab.chats', {
@@ -53,36 +39,23 @@ class RoutesConfig extends Config{
 				}
 			})
 			.state('login', {
-<<<<<<< HEAD
 				url: '/login',
 				templateUrl: 'client/templates/login.html',
 				controller: 'LoginCtrl as logger'
 			})
-			.state('confirmation',{
-=======
-				url:'/login',
-				templateUrl: 'client/templates/login.html',
-				controller: 'LoginCtrl as logger'
-			})
 			.state('confirmation', {
->>>>>>> 85ffa6f011ce1f697aca1dbe6e5329f4d244eda9
 				url: '/confirmation/:phone',
 				templateUrl: 'client/templates/confirmation.html',
 				controller: 'ConfirmationCtrl as confirmation'
 			})
-<<<<<<< HEAD
-			.state('profile',{
-=======
 			//Vista que requiere autorización
 			.state('profile', {
->>>>>>> 85ffa6f011ce1f697aca1dbe6e5329f4d244eda9
 				url: '/profile',
 				templateUrl: 'client/templates/profile.html',
 				controller: 'ProfileCtrl as profile',
 				resolve: {
 					user: this.isAuthorized
 				}
-<<<<<<< HEAD
 			})
 			.state('tab.settings', {
 				url: '/settings',
@@ -92,8 +65,6 @@ class RoutesConfig extends Config{
 						controller: 'SettingsCtrl as settings'
 					}
 				}
-=======
->>>>>>> 85ffa6f011ce1f697aca1dbe6e5329f4d244eda9
 			});
 
 		this.$urlRouterProvider.otherwise('tab/chats');
