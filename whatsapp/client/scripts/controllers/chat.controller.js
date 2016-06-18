@@ -2,7 +2,7 @@ import {Chats, Messages} from '../../../lib/collections';
 import {Controller} from 'angular-ecmascript/module-helpers';
 import Ionic from 'ionic-scripts';
 import {Meteor} from 'meteor/meteor';
-import {_} from 'meteor/underscore';
+import { _ } from 'meteor/underscore';
 
 export default class ChatCtrl extends Controller{
 
@@ -23,15 +23,17 @@ export default class ChatCtrl extends Controller{
 	    	return Chats.findOne(this.chatId);
 	  	}
     });
+
+    this.autoScroll();
 	}
 
 	sendMessage(){
 		if(_.isEmpty(this.message)) return;
 
 		this.callMethod('newMessage',{
-			text: this.message,
-			type: 'text',
-			chatId: this.chatId
+			text: this.message,			
+			chatId: this.chatId,
+			type: 'text'			
 		});
 
 		delete this.message;
@@ -57,6 +59,17 @@ export default class ChatCtrl extends Controller{
 		if(this.isCordova){
 			cordova.plugins.Keyboard.close();
 		}
+	}
+
+	autoScroll(){
+		let recentMessageNum = this.messages.length;
+
+		this.autorun(() => {
+			const currMessagesNum = this.getCollectionReactively('messages').length;
+			const animate = recentMessageNum != currMessagesNum;
+			recentMessageNum = currMessagesNum;
+			this.scrollBottom(animate);
+		});
 	}
 
 	scrollBottom(animate){
