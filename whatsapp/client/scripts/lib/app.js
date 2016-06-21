@@ -17,7 +17,11 @@ import LoginCtrl from '../controllers/login.controller';
 import ConfirmationCtrl from '../controllers/confirmation.controller';
 import ProfileCtrl from '../controllers/profile.controller';
 import SettingsCtrl from '../controllers/settings.controller';
+import NewChatCtrl from '../controllers/new-chat.controller';
 import CalendarFilter from '../filters/calendar.filter';
+import ChatNameFilter from '../filters/chat-name.filter';
+import ChatPictureFilter from '../filters/chat-picture.filter';
+import NewChatService from '../services/new-chat.service';
 import Routes from '../routes';
 import InputDirective from '../directives/input.directive';
 
@@ -34,12 +38,16 @@ Angular.module(App, [
 new Loader(App)
 .load(ChatsCtrl)
 .load(CalendarFilter)
+.load(ChatNameFilter)
+.load(ChatPictureFilter)
 .load(ChatCtrl)
 .load(LoginCtrl)
 .load(ConfirmationCtrl)
 .load(ProfileCtrl)
 .load(SettingsCtrl)
+.load(NewChatCtrl)
 .load(InputDirective)
+.load(NewChatService)
 .load(Routes);
 
 //Startup
