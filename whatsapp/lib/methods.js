@@ -1,5 +1,6 @@
 import {Meteor} from 'meteor/meteor';
 import {Chats, Messages} from '../lib/collections';
+import {check} from 'meteor/check';
 
 Meteor.methods({
 	newMessage(message){
@@ -9,11 +10,18 @@ Meteor.methods({
 				'Must be logged in to send message.');
 		}
 
-		check(message, {
-			text: String,
-			chatId: String,
-			type: String
-		});
+		check(message, Match.OneOf(
+			{
+				text: String,
+				chatId: String,
+				type: String
+			},
+			{
+				picture: String,
+				type: String,
+				chatId: String
+			}
+		));
 
 		message.timestamp = new Date();
 		message.userId = this.userId;
