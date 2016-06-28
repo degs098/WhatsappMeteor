@@ -2,6 +2,7 @@ import {Chats, Messages} from '../../../lib/collections';
 import {Controller} from 'angular-ecmascript/module-helpers';
 import Ionic from 'ionic-scripts';
 import {Meteor} from 'meteor/meteor';
+import {MeteorCameraUI} from 'meteor/okland:camera-ui';
 import { _ } from 'meteor/underscore';
 
 export default class ChatCtrl extends Controller{
@@ -37,6 +38,18 @@ export default class ChatCtrl extends Controller{
 		});
 
 		delete this.message;
+	}
+
+	sendPicture(){
+		MeteorCameraUI.getPicture({}, (err, data) => {
+			if(err) return this.handleError(err);
+
+			this.callMethod('newMessage',{
+				picture: data,
+				type: 'picture',
+				chatId: this.chatId
+			});
+		});
 	}
 
 	inputUp(){
@@ -75,8 +88,20 @@ export default class ChatCtrl extends Controller{
 	scrollBottom(animate){
 		this.$timeout(() => {
 			this.$ionicScrollDelegate.$getByHandle('chatScroll').scrollBottom(animate);
-		}, 300)
+		}, 300);
+	}
+
+	handelError(err){
+		if(err.error == 'cancel') return;
+
+		this.$log.error('Profile save error', err);
+
+		this.$ionicPopup.alert({
+			title: err.reason || 'Save failed',
+			template: 'Please try again',
+			okType: 'button-positive button-clear'
+		});
 	}
 }
 
-ChatCtrl.$inject = ['$stateParams', '$timeout', '$ionicScrollDelegate'];
+ChatCtrl.$inject = ['$stateParams', '$timeout', '$ionicScrollDelegate', '$ionicPopup', '$log'];
